@@ -43,4 +43,4 @@ jobs:
       #Aplicar as mudanças automaticamente ao fazer push na branch main
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve plan.tfplan
+        run: terraform apply -auto-approve 
