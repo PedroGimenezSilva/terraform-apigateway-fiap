@@ -32,15 +32,15 @@ jobs:
       # Inicializar o Terraform
       - name: Terraform Init
         run: terraform init -upgrade
-        working-directory: terraform/cluster-eks
+        working-directory: fiap_apigateway/
 
       # Executar o Terraform Plan
       - name: Terraform Plan
         id: plan
         run: terraform plan -out=plan.tfplan
-        working-directory: terraform/cluster-eks
+        working-directory: fiap_apigateway/
 
-      # Aplicar as mudanças automaticamente ao fazer push na branch main
-      # - name: Terraform Apply
-      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: terraform apply -auto-approve plan.tfplan
+      #Aplicar as mudanças automaticamente ao fazer push na branch main
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve plan.tfplan
